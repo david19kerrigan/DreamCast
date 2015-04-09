@@ -8,6 +8,7 @@ public class Tile {
     public Tile() {
 	type = "grass";
 	image = "#";
+	character = "";
     }
 
     public String getType() {
