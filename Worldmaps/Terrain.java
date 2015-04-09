@@ -26,7 +26,7 @@ public class Terrain {
 	int[][] arr = new int[2][5];
 	for (int b=0;b<2;b++) {
 	    for (int a=0;a<5;a++) {
-		if (rand.nextInt(100) < 50) {
+		if (rand.nextInt(100) < 70) {
 		    arr[b][a] = 1; 
 		    System.out.println(1);
 		} else {
@@ -48,9 +48,9 @@ public class Terrain {
 		}
 	    }
 	}
-
+	
 	int c = 0;
-	while (c < 2) {
+	while (c < 6) {
 	    for (int a=0;a<maxY-1;a++) {
 		for (int b=0;b<maxX-1;b++) {
 		    if (terrain[a][b].getType() == "grass"  && 
@@ -80,14 +80,44 @@ public class Terrain {
 	    }
 	    c = c + 1;
 	}
+	/*
 	for (int g=0;g<5;g++) {
-	    rand = nextInt(100);
-	    terrain[rand.nextInt(100)][rand.nextInt(40)].setType("water");
-	    terrain[rand
+	    int randX = rand.nextInt(100);
+	    int randY = rand.nextInt(40);
+	    terrain[randY][randX].setType("water");
+	    terrain[randY][randX].setImage("~");
+	    int v=0;
+	    while (v<4) {
+		int o = randY;
+		int p = randX;
+		if (rand.nextInt(100) > 1) {
+		    if (p-1 > 0) {
+			terrain[o][p-1].setType("water");
+			terrain[o][p-1].setImage("~");
+			
+		    }
+		    if (p+1 < maxX-1) {
+			terrain[o][p+1].setType("water");
+			terrain[o][p+1].setImage("~");
+			p++;
+		    }
+		    if (o-1 > 0) {
+			terrain[o-1][p].setType("water");
+			terrain[o-1][p].setImage("~");
+		    }
+		    if (o+1 < maxY-1) {
+			terrain[o+1][p].setType("water");
+			terrain[o+1][p].setImage("~");
+		    }
+		}
+	    }
+	    v++;
 	}
+	*/
+	
 	/*
 	int x = 0;
-	while (x < 1) {
+	while (x < 5) {
 	    for (int y=0;y<maxY-1;y++) {
 		for (int z=0;z<maxX-1;z++) {
 		    if (terrain[y][z].getType() == "water"  && 
