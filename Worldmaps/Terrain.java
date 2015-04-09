@@ -55,8 +55,8 @@ public class Terrain {
 	Random rand = new Random();
 	int i = 0;
 	int k = 0;
-	while (i<101) {
-	    while (k<41) {
+	while (i<maxX) {
+	    while (k<maxY) {
 		if (rand.nextInt(100) > 0) {
 		    for (int y=i;y<i+20;y++) {
 			for (int z=k;z<k+20;z++) {
