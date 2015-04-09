@@ -1,0 +1,101 @@
+public class Character{
+    private Arraylist[] items = new ArrayList;
+    private int speed11;
+    private int health12;
+    private int heavyweapon13;
+    private int lightweapon14;
+    private int healingmagic15;
+    private int fightingmagic16;
+    private int alchemy17;
+    private int lightarmor18;
+    private int heavyarmor19;
+    private int luck20;
+    private int speech21;
+    private int stealth22;
+    private int lockpicking23;
+    private int charm24;
+    
+    public Character(int level){
+	items.populate(40, level);
+	calcstats();
+}
+
+	public void populate(int amount, int level){
+	while(amount != 0){
+		amount = amount - 1;
+		int type = 1;
+		items.addone(type.variabilize(14), level);
+	}
+}
+	public String addone(int type , int level){
+	String itemtoadd = ""
+	level.variabilize(3);
+	while( level != 0){
+			level--;
+			itemtoadd = itemtoadd + type;
+	}
+	items.add(itemtoadd);
+}
+
+	public void variabilize(int variable){
+		Random variable = new Random();		
+		this = this + variable.nextInt(variable);
+	}
+
+	public void poststatcalc(){
+	speed11 = count(11);
+	health12 = count(12);
+    	heavyweapon13 = count(13);
+    	lightweapon14 = count(14);
+    	healingmagic15 = count(15);
+    	fightingmagic16 = count(16);
+    	alchemy17 = count(17);
+    	lightarmor18 = count(18);
+    	heavyarmor19 = count(19);
+    	luck20 = count(20);
+    	speech21 = count(21);
+    	steal22 = count(22);
+    	lockpicking23 = count(23);
+    	charm24 = count(24);
+}
+
+	public int count( int type){		
+		int place = 0;
+		int counter = 0;
+		while (place != items.size()){
+			counter = counter + item.get(place).countelement(type);
+			place += 1;
+		}
+		return counter;
+}
+
+	public int countelement(int type){
+		int howmany = 0;
+		String typecheck = "" + type;
+		int place = 0;
+		while( place != length){
+			if ( typecheck.getChar(0) == getChar(place) && typecheck.getChar(1) == getChar(place + 1)){
+				howmany += 1;
+				place += 2;
+			}
+		}
+		return howmany;
+}
+
+
+			
+	public void statcalcphase(Character opponent){
+		this.poststatcalc();
+		opponent.poststatcalc();
+}
+
+    public int interact( Characer ai, int type){
+	if( cateory(type) == "attack"){ attack(opponent);}
+	if( category(type) == "social"){ social(opponent);}
+	if (category(type) =="gift" ){ gift(opponent);}
+	if (category(type) == "craft"){craft(opponent)}
+    }
+    public String category{ int type }
+    if type == 
+		
+		
