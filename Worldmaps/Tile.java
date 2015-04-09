@@ -7,7 +7,7 @@ public class Tile {
 
     public Tile() {
 	type = "grass";
-	image = "g";
+	image = "#";
     }
 
     public String getType() {
