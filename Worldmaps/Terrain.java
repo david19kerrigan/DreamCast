@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class Terrain {
 
     private Tile[][]  terrain;
@@ -12,6 +15,19 @@ public class Terrain {
 	    for (int k=0;k<maxX;k++) {
 		Tile a = new Tile();
 		terrain[i][k] = a;
+	    }
+	}
+	randomize();
+    }
+
+    public void randomize() {
+	Random rand = new Random();
+	for (int i=;i<maxY;i++) {
+	    for (int k=0;k<maxX;k++) {
+		if (rand.nextInt(1) == 0) {
+		    terrain[i][k].setType("water");
+		    terrain[i][k].setImage("w");
+		}	
 	    }
 	}
     }
@@ -29,6 +45,7 @@ public class Terrain {
 
     public static void main(String[] args) {
 	Terrain t = new Terrain();
+	t.randomize();
 	System.out.println(t);
     }
 
