@@ -18,6 +18,20 @@ public class Terrain {
 	    }
 	}
 	randomize();
+	terrain[10][10].setCharacter("w");
+    }
+
+       
+    public Tile[][] getTerrain() {
+	return terrain;
+    }
+
+    public int getmaxX() {
+	return maxX;
+    }
+
+    public int getmaxY() {
+	return maxY;
     }
 
     public void randomize() {
@@ -28,13 +42,10 @@ public class Terrain {
 	    for (int a=0;a<5;a++) {
 		if (rand.nextInt(100) < 70) {
 		    arr[b][a] = 1; 
-		    System.out.println(1);
 		} else {
 		    arr[b][a] = 0;
-		    System.out.println(0);
 		}
 	    }
-	    System.out.println("space");
 	}
 	for (int i=0;i<2;i++) {
 	    for (int k=0;k<5;k++) {
@@ -51,8 +62,8 @@ public class Terrain {
 	
 	int c = 0;
 	while (c < 6) {
-	    for (int a=0;a<maxY-1;a++) {
-		for (int b=0;b<maxX-1;b++) {
+	    for (int a=0;a<maxY;a++) {
+		for (int b=0;b<maxX;b++) {
 		    if (terrain[a][b].getType() == "grass"  && 
 			rand.nextInt(100) > 40) {  
 			if (b-1 > 0) {
@@ -60,7 +71,7 @@ public class Terrain {
 			    terrain[a][b-1].setImage("#");
 			    
 			}
-			if (b+1 < maxX-1) {
+			if (b+1 < maxX) {
 			    terrain[a][b+1].setType("grass");
 			    terrain[a][b+1].setImage("#");
 			    b++;
@@ -69,7 +80,7 @@ public class Terrain {
 			    terrain[a-1][b].setType("grass");
 			    terrain[a-1][b].setImage("#");
 			}
-			if (a+1 < maxY-1) {
+			if (a+1 < maxY) {
 			    terrain[a+1][b].setType("grass");
 			    terrain[a+1][b].setImage("#");
 			}
@@ -161,6 +172,7 @@ public class Terrain {
 	}
 	return s;
     }
+ 
 
     public static void main(String[] args) {
 	Terrain t = new Terrain();
