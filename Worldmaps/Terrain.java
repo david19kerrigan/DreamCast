@@ -91,12 +91,15 @@ public class Terrain {
 	    }
 	    c = c + 1;
 	}
-	/*
-	for (int g=0;g<5;g++) {
+	
+	int g = rand.nextInt(5) + 5;
+
+	for (int h = 0;h<g;h++) {
 	    int randX = rand.nextInt(100);
 	    int randY = rand.nextInt(40);
-	    terrain[randY][randX].setType("water");
-	    terrain[randY][randX].setImage("~");
+	    terrain[randY][randX].setCharacter("monster");
+	    terrain[randY][randX].setImage("m");
+	    /*
 	    int v=0;
 	    while (v<4) {
 		int o = randY;
@@ -123,8 +126,9 @@ public class Terrain {
 		}
 	    }
 	    v++;
+	    */
 	}
-	*/
+	
 	
 	/*
 	int x = 0;

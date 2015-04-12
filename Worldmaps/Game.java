@@ -9,6 +9,9 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import java.util.*;
+import java.io.*;
+
 public class Game extends Canvas implements Runnable{
     
     
@@ -32,6 +35,8 @@ public class Game extends Canvas implements Runnable{
     private static final Terrain terrain = new Terrain();
     private int x = 10;
     private int y = 10;
+    private Random rand = new Random();
+    private double nsPerTick = 7500000000D/60D;
 
     public Game(){
 	setMinimumSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
@@ -64,7 +69,6 @@ public class Game extends Canvas implements Runnable{
     
     public void run() {	
 	long lastTime = System.nanoTime();
-	double nsPerTick = 1000000000D/60D;
 	
 	int frames = 0;
 	int ticks = 0;
@@ -83,14 +87,7 @@ public class Game extends Canvas implements Runnable{
 		    tick();
 		    delta -= 1;
 		    shouldRender = true;
-		}
-	    
-	    try {
-		Thread.sleep(2);
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    }
-	    
+		}	    
 	    if (shouldRender)
 		{
 		    frames++;
@@ -111,6 +108,43 @@ public class Game extends Canvas implements Runnable{
 	tickCount++;
 
 	Tile[][] t = terrain.getTerrain();
+
+	for (int y=0;y<terrain.getmaxY();y++) {
+	    for (int x=0;x<terrain.getmaxX();x++) {
+		if (t[y][x].getCharacter() == "monster") {
+		    if (rand.nextInt(100) <25) {
+			int direction = rand.nextInt(4);
+			if (direction == 0 && y-1 > -1) {
+			    t[y][x].setCharacter("");
+			    t[y-1][x].setCharacter("monster");
+			    y--;
+			}
+		        if (direction == 1 && y+1  < terrain.getmaxY()) {
+			    t[y][x].setCharacter("");
+			    t[y+1][x].setCharacter("monster");
+			    y++;
+			}
+			if (direction == 2 && x-1 > -1) {
+			    t[y][x].setCharacter("");
+			    t[y][x-1].setCharacter("monster");
+			    x--;
+			}
+			if (direction == 3 && x+1 < terrain.getmaxX()) {
+			    t[y][x].setCharacter("");
+			    t[y][x+1].setCharacter("monster");
+			    x++;
+			}
+		    }
+		}
+	    }
+	}
+	
+	if (t[y][x].getType() == "water") {
+	    nsPerTick = 15000000000D/60D;
+	}
+	if (t[y][x].getType() == "grass") {
+	    nsPerTick = 7500000000D/60D;
+	}
 
 	if (input.up.isPressed()  && y > 0){
 	    t[y][x].setCharacter("");
@@ -161,6 +195,9 @@ public class Game extends Canvas implements Runnable{
 		} 
 		if (t[y][x].getCharacter() == "w") {
 		    image.setRGB(x,y,Color.RED.getRGB());
+		}
+		if (t[y][x].getCharacter() == "monster") {
+		    image.setRGB(x,y,Color.YELLOW.getRGB());
 		}
 	    }
 	}
