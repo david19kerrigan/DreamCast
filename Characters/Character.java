@@ -181,29 +181,24 @@ static String[] Armor ={"Pendant","Bracers","Lockpick","Spoon","Sword", "Staff",
 }
 
 
-//finds a random item of a player curently equipped
-	public String randitem(){
-		int i = variabilize(10,11);
-		itemspec(i);
-		return equipped.get(i - 11);
-}
 
 
 
 //battle reward process of taking an item from a dead foe
 	public void battlereward(Character ai){
+		int i = variabilize(10,11);
+		String randitem = ai.equipped.get(i - 11);
 		Scanner input = new Scanner(System.in);
 		itemprint();
-		System.out.println("\n\n\n");
-		String randitem = ai.randitem();
-		System.out.println("would you like to take this item for another item?which item?");		
+		ai.itemspec(i);
+		System.out.println("would you like to take this item for your item of the same type?\nnegative number ||no \npositive number || yes");		
 		int index = input.nextInt();
 		if (index < 0){
 			System.out.println("no item taken");
 			return;
 		}
-		equipped.add(index, randitem);
-		equipped.remove(index);
+		equipped.add(i - 11, randitem);
+		equipped.remove(index + 1);
 		calcstats(0);
 
 		itemprint();
