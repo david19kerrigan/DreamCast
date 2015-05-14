@@ -34,6 +34,43 @@ public class Terrain {
 	return maxY;
     }
 
+    /*
+    public void soften(int d,int e,int f,int g) {
+	Random rand = new Random();
+	int c = 0;
+	while (c < 6) {
+	    for (int a=d;a<e;a++) {
+		for (int b=f;b<g;b++) {
+		    if (terrain[a][b].getType() == "grass"  && 
+			rand.nextInt(100) > 40) {  
+			if (b-1 > 0) {
+			    terrain[a][b-1].setType("grass");
+			    terrain[a][b-1].setImage("#");
+			    
+			}
+			if (b+1 < maxX) {
+			    terrain[a][b+1].setType("grass");
+			    terrain[a][b+1].setImage("#");
+			    b++;
+			}
+			if (a-1 > 0) {
+			    terrain[a-1][b].setType("grass");
+			    terrain[a-1][b].setImage("#");
+			}
+			if (a+1 < maxY) {
+			    terrain[a+1][b].setType("grass");
+			    terrain[a+1][b].setImage("#");
+			}
+			
+			
+		    }
+		}
+	    }
+	    c = c + 1;
+	}
+    }
+    */
+
     public void randomize() {
 	
 	Random rand = new Random();
@@ -59,7 +96,11 @@ public class Terrain {
 		}
 	    }
 	}
-	
+
+	soften(0,maxY,0,maxX);
+	soften(
+
+	/*
 	int c = 0;
 	while (c < 6) {
 	    for (int a=0;a<maxY;a++) {
@@ -91,6 +132,8 @@ public class Terrain {
 	    }
 	    c = c + 1;
 	}
+	*/
+	
 	
 	int g = rand.nextInt(5) + 5;
 
